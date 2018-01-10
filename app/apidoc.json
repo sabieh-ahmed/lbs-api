@@ -1,0 +1,13 @@
+{
+  "name": "LBS API",
+  "description": "LBS API Documentation",
+  "title": "Welcome to LBS",
+  "version": "1.0.0",
+  "url": "http://localhost:8000/api",
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  },
+  "order": [
+  ]
+}

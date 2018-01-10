@@ -13,7 +13,7 @@
 * Switch your branch from `master` to `develop`
 * Rename `.env.sample` to `.env` and update DB configs
 * Run `composer install`
-* Create database `lbs-api` in mysql
+* Create database `lbsdb` in mysql
 * Run `php artisan migrate`
 * Run `php artisan db:seed`
 * Run if __seed is not working__ `composer dump-autoload` the Run again `php artisan db:seed`

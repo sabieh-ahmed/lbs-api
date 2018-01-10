@@ -1,0 +1,1 @@
+npm install & composer install & composer dump-autoload --optimize & php artisan migrate & node_modules\.bin\apidoc.cmd -i app/ -o public/apidoc/
