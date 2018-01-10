@@ -9,7 +9,7 @@
 * MySQL
 
 ## Code Setup
-* Clone LBS from `https://<USERNAME>@bitbucket.org/sabiehahmed/lbs-api.git`
+* Clone LBS from `https://github.com/sabieh-ahmed/lbs-api.git`
 * Switch your branch from `master` to `develop`
 * Rename `.env.sample` to `.env` and update DB configs
 * Run `composer install`
