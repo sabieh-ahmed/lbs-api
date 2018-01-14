@@ -15,7 +15,7 @@ class AuthController extends Controller
 {
 
     /**
-     * @apiGroup           Authentication
+     * @apiGroup           Authenticasdfsftion
      * @apiName            Register
      *
      * @api                {POST} /register Register
