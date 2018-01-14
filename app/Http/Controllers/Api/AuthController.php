@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Facade\AuthFacade;
+use App\Helpers\FractalResponseHelper;
+use App\Helpers\ResponseCodes;
 use App\Http\Controllers\Controller;
+use App\Http\Transformers\AuthTokenTransformer;
+use App\Http\Transformers\SuccessTransformer;
 use App\Http\Validators\AuthValidator;
 use Illuminate\Http\Request;
 
@@ -38,7 +42,8 @@ class AuthController extends Controller
     {
         AuthValidator::register($request->all());
         $token = AuthFacade::registerUser($request->all());
-        return response()->json($token);
+        $responseHandler = new FractalResponseHelper(new AuthTokenTransformer(), 'Item', 'Tokens');
+        return $responseHandler->response($token, ResponseCodes::HTTP_OK);
     }
 
     /**
@@ -67,7 +72,8 @@ class AuthController extends Controller
     {
         AuthValidator::login($request->all());
         $token = AuthFacade::loginUser($request->all());
-        return response()->json($token);
+        $responseHandler = new FractalResponseHelper(new AuthTokenTransformer(), 'Item', 'Tokens');
+        return $responseHandler->response($token, ResponseCodes::HTTP_OK);
     }
 
 
@@ -94,7 +100,8 @@ class AuthController extends Controller
     {
         AuthValidator::forgotPassword($request->all());
         $data = AuthFacade::forgotPassword($request->all());
-        return response()->json($data);
+        $responseHandler = new FractalResponseHelper(new SuccessTransformer(), 'Item', 'Message');
+        return $responseHandler->response($data, ResponseCodes::HTTP_OK);
     }
 
 
@@ -122,7 +129,8 @@ class AuthController extends Controller
     {
         AuthValidator::changePassword($request->all());
         $data = AuthFacade::changeUserPassword($request->all());
-        return response()->json($data);
+        $responseHandler = new FractalResponseHelper(new SuccessTransformer(), 'Item', 'Message');
+        return $responseHandler->response($data, ResponseCodes::HTTP_OK);
     }
 
 
@@ -150,7 +158,8 @@ class AuthController extends Controller
     public function logout()
     {
         $data = AuthFacade::logout();
-        return response()->json($data);
+        $responseHandler = new FractalResponseHelper(new SuccessTransformer(), 'Item', 'Message');
+        return $responseHandler->response($data, ResponseCodes::HTTP_OK);
     }
 
 
@@ -172,8 +181,7 @@ class AuthController extends Controller
      * {
      * "token_type": "Bearer",
      * "expires_in": 315360000,
-     * "access_token": "eyJ0eXAiOiJKV1QiLCJhbG...",
-     * "refresh_token": "Oukd61zgKzt8TBwRjnasd..."
+     * "access_token": "eyJ0eXAiOiJKV1QiLCJhbG..."
      * }
      */
 
@@ -193,8 +201,7 @@ class AuthController extends Controller
      * {
      * "token_type": "Bearer",
      * "expires_in": 315360000,
-     * "access_token": "eyJ0eXAiOiJKV1QiLCJhbG...",
-     * "refresh_token": "Oukd61zgKzt8TBwRjnasd..."
+     * "access_token": "eyJ0eXAiOiJKV1QiLCJhbG..."
      * }
      */
 
@@ -215,8 +222,7 @@ class AuthController extends Controller
      * {
      * "token_type": "Bearer",
      * "expires_in": 315360000,
-     * "access_token": "eyJ0eXAiOiJKV1QiLCJhbG...",
-     * "refresh_token": "Oukd61zgKzt8TBwRjnasd..."
+     * "access_token": "eyJ0eXAiOiJKV1QiLCJhbG..."
      * }
      * @param Request $request
      * @param $provider
@@ -226,6 +232,7 @@ class AuthController extends Controller
     {
         AuthValidator::socialAuth($request->all());
         $data = AuthFacade::socialAuth($provider, $request->all());
-        return response()->json($data);
+        $responseHandler = new FractalResponseHelper(new AuthTokenTransformer(), 'Item', 'Tokens');
+        return $responseHandler->response($data, ResponseCodes::HTTP_OK);
     }
 }

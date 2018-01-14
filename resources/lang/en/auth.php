@@ -25,6 +25,13 @@ return [
         'password_changed' => 'Password Changed Successfully',
         'logout' => 'Successfully Logged Out',
         'forgot_password' => 'We have sent you and email with password reset link. Check your inbox.'
+    ],
+    'token' => [
+        'expired' => 'Token has expired.',
+        'invalid' => 'Provided token is invalid.',
+        'absent' => 'Token not provided.',
+        'not_found' => 'User not found.',
+        'not_permitted' => 'You are not authorized to use this feature.'
     ]
 
 ];
